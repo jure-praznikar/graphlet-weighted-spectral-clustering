@@ -97,8 +97,8 @@ for (j in 2:9) {
 }
 set.seed(123)
 ## Hooke and Jeeves Pattern Search Optimization
-source("testHJN.r") # see EnergyFUNeigenLap.r for energy_function
-# the output from testHJN.r is AOPT=w0*A0 + w1*A1 + ... w8*A8
+source("optHJN.r") # see EnergyFUNeigenLap.r for energy_function
+# the output from optHJN.r is AOPT=w0*A0 + w1*A1 + ... w8*A8
 # weights has ben optmised to get max of energy_function
 
 ## Normlasied Laplacian
