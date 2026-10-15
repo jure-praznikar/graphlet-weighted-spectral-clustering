@@ -57,11 +57,14 @@ Settings (`testHJN.r`):
 LFR_Lap.r                    # Main script with the full pipeline
 myLAPnorm.r                  # LAPnorm(): normalised Laplacian
 EnergyFUNeigenLap.r          # energy_function: F = S + T - P
-testHJN.r                    # Hooke–Jeeves optimisation of the weights (hjn)
+optHJN.r                     # Hooke–Jeeves optimisation of the weights (hjn)
 graph_1668509426.txt         # LFR network (edge list, 0-indexed)
 membership_1668509426.txt    # Ground-truth communities
 lfr.pdf                      # Output: weights and eigenvalue plots
 ```
+
+## Data 
+The LFR network `graph_1668509426.txt` and its ground-truth communities `membership_1668509426.txt` are taken from the collection of LFR benchmark graphs by Toth (2021), created for the evaluation of Synwalk (Toth et al., 2022).
 
 ## Requirements
 R packages:
@@ -98,12 +101,20 @@ Optimised weights: G2 = 1.090, G8 = 0.960, all others 0 (G0 fixed at 1). λ2 rat
 - **Left:** optimised weights of G0–G8
 - **Right:** eigenvalues λ2–λ20 of the normalised Laplacian, for G0 (black) and AOPT (red)
 
+
 ## Metrics
 | Metric | Description |
 |--------|-------------|
 | k | Number of clusters, from the largest eigengap |
 | NMI | Normalized Mutual Information with the ground truth, for G0 and AOPT |
 | λ2 | Second smallest Laplacian eigenvalue for G0 and AOPT, and their ratio |
+
+
+## References
+- Toth, C. (2021). *A collection of LFR benchmark graphs* (Version v1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.4450167
+- Toth, C., Helic, D., & Geiger, B. C. (2022). Synwalk: community detection via random walk modelling. *Data Mining and Knowledge Discovery*, 36(2), 739–780. https://doi.org/10.1007/s10618-021-00809-w
+- Windels, S. F. L. (2024). *GRADCO: GRaphlet-orbit ADjacency COunter* (Version 0.1.8) [Python package]. https://pypi.org/project/gradco/
+
 
 ## Citation
 A paper describing this method is in preparation. Until it is published, if you use this code, please cite the repository:
@@ -121,4 +132,5 @@ BibTeX:
   year   = {2026},
   url    = {https://github.com/marijarakic/graphlet-weighted-spectral-clustering}
 }
-```'
+```
+[GRADCO]: https://pypi.org/project/gradco/
