@@ -96,7 +96,7 @@ LFR network with 300 nodes and 9 ground-truth communities:
 
 Optimised weights: G2 = 1.090, G8 = 0.960, all others 0 (G0 fixed at 1). λ2 ratio (AOPT / G0) = 0.961.
 
-![Optimised graphlet weights and Laplacian eigenvalues](lfr.png)
+![Optimised graphlet weights and Laplacian eigenvalues](lfr.pdf)
 
 - **Left:** optimised weights of G0–G8
 - **Right:** eigenvalues λ2–λ20 of the normalised Laplacian, for G0 (black) and AOPT (red)
