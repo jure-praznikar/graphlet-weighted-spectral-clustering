@@ -131,8 +131,8 @@ names(weights) <- paste0("G", 0:8)
 # =============================================================================
 # 6. Plot weights and spectra
 # =============================================================================
-plot_file <- "lfr.pdf"
-pdf(file = plot_file, width = 10, height = 5)
+plot_file <- "lfr.png"
+png(file = plot_file, width = 10, height = 5, units = "in", res = 150)
 par(mfrow = c(1, 2), mar = c(6, 4, 3, 1))
 
 # Left: barplot of the nine weights (G0 is fixed at 1)
