@@ -1,50 +1,29 @@
-##LAPnorm <- function(A,n) {
-##      #check if is 1,2,3, default is 2 symmetric normalised
-##      if (!(n %in% c(1,2,3))) n<-2    
-##      ## Degree matrix
-##      deg <- rowSums(A)
-##      D <- diag(deg)
-##      if (n==1) {
-##        ## 1. Unnormalized Laplacian
-##        L <- D - A
-##      } else if (n==2) {    
-##        # symmetric normalised
-##        D_inv_sqrt <- diag(1 / sqrt(deg))
-##        L <- diag(nrow(A)) - D_inv_sqrt %*% A %*% D_inv_sqrt
-##     } else if (n==3) {     
-##        ## Random-walk normalized Laplacian
-##        D_inv <- diag(1 / deg)
-##        L <- diag(nrow(A)) - D_inv %*% A
-##    }   
-##    return(L)
-##}
-
-
-## faster
+# Normalised Laplacian of adjacency A.
+# n = 1: unnormalised L = D - A
+# n = 2: symmetric    L = I - D^{-1/2} A D^{-1/2}   (default)
+# n = 3: random-walk  L = I - D^{-1} A
+#
+# Isolated nodes (deg = 0) are guarded so divisions stay finite.
 LAPnorm <- function(A, n = 2) {
   if (!(n %in% c(1, 2, 3))) n <- 2
-  
+
   deg <- rowSums(A)
-  
+
   if (n == 1) {
-    # Unnormalized: L = D - A
     L <- -A
     diag(L) <- deg
-    
+
   } else if (n == 2) {
-    # Symmetric normalized: L = I - D^{-1/2} A D^{-1/2}
-    # equivalent to: L[i,j] = -A[i,j] / sqrt(deg[i] * deg[j])
-    d <- 1 / sqrt(deg)
-    L <- (-A * outer(d, d))   # vectorized, no matrix mult
+    # L[i,j] = -A[i,j] / sqrt(deg[i] * deg[j]); diagonal set to 1
+    d <- 1 / sqrt(pmax(deg, 1e-12))
+    L <- (-A * outer(d, d))
     diag(L) <- 1
-    
+
   } else if (n == 3) {
-    # Random-walk: L = I - D^{-1} A
-    # equivalent to: L[i,j] = -A[i,j] / deg[i]
-    L <- (-A / deg)             # broadcasts row-wise
+    # L[i,j] = -A[i,j] / deg[i]; diagonal set to 1
+    L <- (-A / pmax(deg, 1e-12))
     diag(L) <- 1
   }
-  
+
   return(L)
 }
-
