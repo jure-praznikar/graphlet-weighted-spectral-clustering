@@ -60,7 +60,7 @@ EnergyFUNeigenLap.r          # energy_function: F = S + T - P
 optHJN.r                     # Hooke–Jeeves optimisation of the weights (hjn)
 graph_1668509426.txt         # LFR network (edge list, 0-indexed)
 membership_1668509426.txt    # Ground-truth communities
-lfr.pdf                      # Output: weights and eigenvalue plots
+lfr.png                      # Output: weights and eigenvalue plots
 ```
 
 ## Data 
@@ -84,7 +84,7 @@ use_python("/usr/bin/python3")
 ## Usage
 1. Place the network and membership files in the working directory.
 2. Run `LFR_Lap.r`.
-3. Results are printed to the console, and the plots are saved to `lfr.pdf`.
+3. Results are printed to the console, and the plots are saved to `lfr.png`.
 
 ## Results
 LFR network with 300 nodes and 9 ground-truth communities:
@@ -96,7 +96,7 @@ LFR network with 300 nodes and 9 ground-truth communities:
 
 Optimised weights: G2 = 1.090, G8 = 0.960, all others 0 (G0 fixed at 1). λ2 ratio (AOPT / G0) = 0.961.
 
-![Optimised graphlet weights and Laplacian eigenvalues](lfr.pdf)
+![Optimised graphlet weights and Laplacian eigenvalues](lfr.png)
 
 - **Left:** optimised weights of G0–G8
 - **Right:** eigenvalues λ2–λ20 of the normalised Laplacian, for G0 (black) and AOPT (red)
